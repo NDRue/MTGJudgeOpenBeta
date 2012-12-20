@@ -117,15 +117,7 @@ public class DisplayDetails extends Activity {
 				boolean noSearch = true;
 				for (int i = 0; i < dataLines.size(); ++i) {
 					if (dataLines.get(i).contains(searchStr)) {
-						String toAddStr = dataLines.get(i).replace("\n", nl);
-						String[] toAdd = toAddStr.split(nl + nl);
-						for (int toAddInt = 0; toAddInt < toAdd.length; ++toAddInt) {
-							noSearch = false;
-							while (blocked) {
-							}
-							blocked = true;
-							publishProgress(toAdd[toAddInt].replace("\n", nl));
-						}
+						publishProgress(dataLines.get(i).replace("\n", nl));
 					}
 					// Log.d(pid, "Get dataline: (" + i + "): " +
 					// dataLines.get(i));
@@ -150,28 +142,12 @@ public class DisplayDetails extends Activity {
 				}
 				if (noSearch) {
 					for (int i = 0; i < dataLines.size(); ++i) {
-						String toAddStr = dataLines.get(i).replace("\n", nl);
-						String[] toAdd = toAddStr.split(nl + nl);
-						for (int toAddInt = 0; toAddInt < toAdd.length; ++toAddInt) {
-							noSearch = false;
-							while (blocked) {
-							}
-							blocked = true;
-							publishProgress(toAdd[toAddInt].replace("\n", nl));
-						}
+						publishProgress(dataLines.get(i).replace("\n", nl));
 					}
 				}
 			} else {
 				for (int i = 0; i < dataLines.size(); ++i) {
-					String toAddStr = dataLines.get(i).replace("\n", nl);
-					String[] toAdd = toAddStr.split(nl + nl);
-					for (int toAddInt = 0; toAddInt < toAdd.length; ++toAddInt) {
-						while (blocked) {
-							// do nothing
-						}
-						blocked = true;
-						publishProgress(toAdd[toAddInt].replace("\n", nl));
-					}
+					publishProgress(dataLines.get(i).replace("\n", nl));
 				}
 			}
 			return null;
@@ -185,14 +161,17 @@ public class DisplayDetails extends Activity {
 						10));
 				lL.addView(v);
 			}
-			TextView tV = new TextView(ct);
+			EditText tV = new EditText(ct);
 			tV.setLayoutParams(new LayoutParams(
 					LayoutParams.MATCH_PARENT,
 					LayoutParams.WRAP_CONTENT));
 			tV.setText(arg0[0].replace("\n", nl));
 			tV.setTextSize(13);
+			tV.setKeyListener(null);
+			tV.setBackgroundDrawable(ct.getResources().getDrawable(R.drawable.semitransparent_white));
+//			tV.setBackgroundColor(Color.BLACK);
 			tV.setTextColor(Color.WHITE);
-			tV.setOnTouchListener(new OnTouchListener() {
+			/*tV.setOnTouchListener(new OnTouchListener() {
 
 				public boolean onTouch(View arg0, MotionEvent arg1) {
 					// TODO Auto-generated method stub
@@ -213,7 +192,7 @@ public class DisplayDetails extends Activity {
 					return false;
 				}
 
-			});
+			});*/
 			//tV.setBackgroundDrawable(d);
 			lL.addView(tV);
 			// tV.setText(tVData);
